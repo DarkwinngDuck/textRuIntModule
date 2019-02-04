@@ -1,0 +1,23 @@
+{
+  "name": "textruintegrationmodule",
+  "version": "1.0.0",
+  "description": "simple implementation of text.ru integration module",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarkwinngDuck/textRuIntModule.git"
+  },
+  "keywords": [
+    "text.ru",
+    "integration"
+  ],
+  "author": "dmitriy.skachko2@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DarkwinngDuck/textRuIntModule/issues"
+  },
+  "homepage": "https://github.com/DarkwinngDuck/textRuIntModule#readme"
+}
