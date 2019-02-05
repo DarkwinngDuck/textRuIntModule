@@ -6,6 +6,12 @@
   "scripts": {
     "test": "jest"
   },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "text"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DarkwinngDuck/textRuIntModule.git"
