@@ -68,7 +68,7 @@ describe('[TextRuIntegrationModule] ConfigManager', () => {
       confOne: {},
       confTwo: {},
     };
-    configManager.reset();
+    configManager.resetConfigsCache();
     expect(configManager.cache).toEqual({});
   });
 });
