@@ -13,7 +13,7 @@ describe('[TextRuIntegrationModule] Client', () => {
   beforeEach(() => {
     config = {
       userkey: 'userkey',
-      uri: 'uri',
+      uri: 'uri/',
     };
     ctx = {
       text: 'text',
@@ -27,7 +27,8 @@ describe('[TextRuIntegrationModule] Client', () => {
   });
 
   test('should send a request with expected params to get account info', () => {
-    const fullUri = `${config.uri}`;
+    const path = 'account';
+    const fullUri = `${config.uri}${path}`;
     const params = {
       form: {
         method: 'get_packages_info',
@@ -40,7 +41,8 @@ describe('[TextRuIntegrationModule] Client', () => {
   });
 
   test('should send a request with expected params to review text', () => {
-    const fullUri = `${config.uri}`;
+    const path = 'post';
+    const fullUri = `${config.uri}${path}`;
     const params = {
       form: {
         text: ctx.text,
@@ -53,7 +55,8 @@ describe('[TextRuIntegrationModule] Client', () => {
   });
 
   test('should send a request with expected params to get result of review text', () => {
-    const fullUri = `${config.uri}`;
+    const path = 'post';
+    const fullUri = `${config.uri}${path}`;
     const params = {
       form: {
         uid,
