@@ -1,25 +1,25 @@
-const request = require('request-promise-native');
-const Client = require('../lib');
+const Client = require('../lib/client/client');
 
+const http = {
+  post() {},
+};
 
 describe('[TextRuIntegrationModule] Client', () => {
+  let client;
   let config;
   let ctx;
   let uid;
-  let client;
-  let uri;
 
   beforeEach(() => {
     config = {
       userkey: 'userkey',
+      uri: 'uri',
     };
     ctx = {
       text: 'text',
     };
     uid = 'uid';
-    uri = 'uri';
-    client = new Client();
-    client.uri = uri;
+    client = new Client(http);
   });
 
   test('should create an instance', () => {
@@ -27,33 +27,33 @@ describe('[TextRuIntegrationModule] Client', () => {
   });
 
   test('should send a request with expected params to get account info', () => {
-    const fullUri = `${client.uri}account`;
+    const fullUri = `${config.uri}`;
     const params = {
       form: {
         method: 'get_packages_info',
         userkey: config.userkey,
       },
     };
-    const spy = jest.spyOn(request, 'post');
+    const spy = jest.spyOn(client.http, 'post');
     client.getAccountInfo(config);
     expect(spy).toHaveBeenCalledWith(fullUri, params);
   });
 
   test('should send a request with expected params to review text', () => {
-    const fullUri = `${client.uri}post`;
+    const fullUri = `${config.uri}`;
     const params = {
       form: {
         text: ctx.text,
         userkey: config.userkey,
       },
     };
-    const spy = jest.spyOn(request, 'post');
+    const spy = jest.spyOn(client.http, 'post');
     client.sendJob(config, ctx);
     expect(spy).toHaveBeenCalledWith(fullUri, params);
   });
 
   test('should send a request with expected params to get result of review text', () => {
-    const fullUri = `${client.uri}post`;
+    const fullUri = `${config.uri}`;
     const params = {
       form: {
         uid,
@@ -61,7 +61,7 @@ describe('[TextRuIntegrationModule] Client', () => {
         jsonvisible: 'detail',
       },
     };
-    const spy = jest.spyOn(request, 'post');
+    const spy = jest.spyOn(client.http, 'post');
     client.getResult(config, uid);
     expect(spy).toHaveBeenCalledWith(fullUri, params);
   });
