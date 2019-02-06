@@ -68,6 +68,19 @@ describe('[TextRuIntegrationModule] API', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  test('should call storage\'s save method if storage exists when call sendJob', () => {
+    const spy = jest.spyOn(storage, 'save');
+    jest.spyOn(api, 'getConfig').mockReturnValue({ userkey: 'uk', uri: 'uri' });
+    api
+      .setStorage(storage)
+      .sendJob('type', {
+        text: 'text',
+      })
+      .then(() => {
+        expect(spy).toHaveBeenCalled();
+      });
+  });
+
   test('should call client\'s getCheckResult method', () => {
     const spy = jest.spyOn(client, 'getCheckResult');
     jest.spyOn(api, 'getConfig').mockReturnValue({ userkey: 'uk', uri: 'uri' });
@@ -75,5 +88,18 @@ describe('[TextRuIntegrationModule] API', () => {
       uid: 'uid',
     });
     expect(spy).toHaveBeenCalled();
+  });
+
+  test('should call storage\'s save method if storage exists when call getResult', () => {
+    const spy = jest.spyOn(client, 'getCheckResult');
+    jest.spyOn(api, 'getConfig').mockReturnValue({ userkey: 'uk', uri: 'uri' });
+    api
+      .setStorage(storage)
+      .getResult('type', {
+        uid: 'uid',
+      })
+      .then(() => {
+        expect(spy).toHaveBeenCalled();
+      });
   });
 });
