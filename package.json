@@ -1,6 +1,6 @@
 {
-  "name": "textruintegrationmodule",
-  "version": "1.0.0",
+  "name": "@seo-booster/text-ru-integration-module",
+  "version": "1.0.1",
   "description": "simple implementation of text.ru integration module",
   "main": "index.js",
   "scripts": {
@@ -36,5 +36,9 @@
   "dependencies": {
     "request": "2.88.0",
     "request-promise-native": "1.0.5"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
