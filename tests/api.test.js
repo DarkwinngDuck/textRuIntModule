@@ -15,7 +15,10 @@ describe('[TextRuIntegrationModule] API', () => {
   };
 
   beforeEach(() => {
-    api = new TextRuIntegrationModuleApi({ client, manager });
+    api = new TextRuIntegrationModuleApi({
+      client,
+      manager,
+    });
   });
 
   test('should create instance of TextRuIntegrationModule', () => {
@@ -41,6 +44,31 @@ describe('[TextRuIntegrationModule] API', () => {
     const type = 'default';
     const spy = jest.spyOn(manager, 'getConfig');
     api.getConfiguration(type);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  test('should call client\'s getAccountInfo method', () => {
+    const type = 'default';
+    const spy = jest.spyOn(client, 'getAccountInfo');
+    api.getAccInfo(type);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  test('should call client\'s sendJob method', () => {
+    const spy = jest.spyOn(client, 'sendJob');
+    jest.spyOn(api, 'getConfiguration').mockReturnValue({userkey: 'uk', uri: 'uri'});
+    api.sendJobToCheck('type', {
+      text: 'text',
+    });
+    expect(spy).toHaveBeenCalled();
+  });
+
+  test('should call client\'s getResult method', () => {
+    const spy = jest.spyOn(client, 'getResult');
+    jest.spyOn(api, 'getConfiguration').mockReturnValue({userkey: 'uk', uri: 'uri'});
+    api.getCheckResult('type', {
+      uid: 'uid',
+    });
     expect(spy).toHaveBeenCalled();
   });
 });
