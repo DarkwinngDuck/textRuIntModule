@@ -46,6 +46,14 @@ describe('[TextRuIntegrationModule] ConfigManager', () => {
     expect(config).toBeDefined();
   });
 
+  test('should return a config of default type', () => {
+    configManager.setConfiguration({
+      config: new Config({}),
+    });
+    const config = configManager.getConfiguration();
+    expect(config).toBeDefined();
+  });
+
   test('should throw an error config of expected type does not exists', () => {
     const type = 'expected';
     expect(() => {
