@@ -40,6 +40,12 @@ describe('[TextRuIntegrationModule] API', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  test('should call manager\'s resetConfigsCache method', () => {
+    const spy = jest.spyOn(manager, 'resetConfigsCache');
+    api.resetConfigs();
+    expect(spy).toHaveBeenCalled();
+  });
+
   test('should call manager\'s getConfiguration method', () => {
     const type = 'default';
     const spy = jest.spyOn(manager, 'getConfig');
