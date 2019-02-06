@@ -56,7 +56,7 @@ describe('[TextRuIntegrationModule] API', () => {
 
   test('should call client\'s sendJob method', () => {
     const spy = jest.spyOn(client, 'sendJob');
-    jest.spyOn(api, 'getConfiguration').mockReturnValue({userkey: 'uk', uri: 'uri'});
+    jest.spyOn(api, 'getConfiguration').mockReturnValue({ userkey: 'uk', uri: 'uri'});
     api.sendJobToCheck('type', {
       text: 'text',
     });
@@ -65,7 +65,7 @@ describe('[TextRuIntegrationModule] API', () => {
 
   test('should call client\'s getResult method', () => {
     const spy = jest.spyOn(client, 'getResult');
-    jest.spyOn(api, 'getConfiguration').mockReturnValue({userkey: 'uk', uri: 'uri'});
+    jest.spyOn(api, 'getConfiguration').mockReturnValue({ userkey: 'uk', uri: 'uri'});
     api.getCheckResult('type', {
       uid: 'uid',
     });
