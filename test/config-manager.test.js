@@ -23,13 +23,13 @@ describe('[TextRuIntegrationModule] ConfigManager', () => {
 
   test('should add to its cache instance of Config with default type', () => {
     const type = 'default';
-    configManager.setConfig(new Config({}));
+    configManager.setConfiguration(new Config({}));
     expect(configManager.cache[type]).toBeDefined();
   });
 
   test('should add to its cache instance of Config with expected type', () => {
     const type = 'expected';
-    configManager.setConfig({
+    configManager.setConfiguration({
       type,
       options: new Config({}),
     });
@@ -38,28 +38,28 @@ describe('[TextRuIntegrationModule] ConfigManager', () => {
 
   test('should return a config of expected type', () => {
     const type = 'expected';
-    configManager.setConfig({
+    configManager.setConfiguration({
       type,
       config: new Config({}),
     });
-    const config = configManager.getConfig(type);
+    const config = configManager.getConfiguration(type);
     expect(config).toBeDefined();
   });
 
   test('should throw an error config of expected type does not exists', () => {
     const type = 'expected';
     expect(() => {
-      configManager.getConfig(type);
+      configManager.getConfiguration(type);
     }).toThrowError();
   });
 
   test('should return all config types', () => {
-    configManager.setConfig({
+    configManager.setConfiguration({
       type: 'some',
       options: new Config({}),
     });
-    configManager.setConfig(new Config({}));
-    const total = configManager.getConfigsTypes();
+    configManager.setConfiguration(new Config({}));
+    const total = configManager.getConfigurationsTypes();
     expect(total.length).toBe(2);
   });
 
@@ -68,7 +68,7 @@ describe('[TextRuIntegrationModule] ConfigManager', () => {
       confOne: {},
       confTwo: {},
     };
-    configManager.resetConfigsCache();
+    configManager.resetConfigurationsCache();
     expect(configManager.cache).toEqual({});
   });
 });
