@@ -1,6 +1,6 @@
 {
   "name": "@seo-booster/text-ru-integration-module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "simple implementation of text.ru integration module",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/DarkwinngDuck/textRuIntModule#readme",
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-jest": "22.2.2",
