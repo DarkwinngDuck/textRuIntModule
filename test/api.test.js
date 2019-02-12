@@ -12,7 +12,7 @@ describe('[TextRuIntegrationModule] API', () => {
     getConfiguration() {},
     resetConfigurationsCache() {},
   };
-  const storage = {
+  const provider = {
     save() {},
   };
 
@@ -34,9 +34,9 @@ describe('[TextRuIntegrationModule] API', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  test('should setup storage', () => {
-    const result = api.setStorage(storage);
-    expect(result.storage).toBeDefined();
+  test('should setup provider', () => {
+    const result = api.setProvider(provider);
+    expect(result.provider).toBeDefined();
   });
 
   test('should call manager\'s resetConfigurationsCache method', () => {
@@ -61,18 +61,24 @@ describe('[TextRuIntegrationModule] API', () => {
 
   test('should call client\'s sendJobToCheck method', () => {
     const spy = jest.spyOn(client, 'sendJobToCheck');
-    jest.spyOn(api, 'getConfig').mockReturnValue({ userkey: 'uk', uri: 'uri' });
+    jest.spyOn(api, 'getConfig').mockReturnValue({
+      userkey: 'uk',
+      uri: 'uri',
+    });
     api.sendJob('type', {
       text: 'text',
     });
     expect(spy).toHaveBeenCalled();
   });
 
-  test('should call storage\'s save method if storage exists when call sendJob', () => {
-    const spy = jest.spyOn(storage, 'save');
-    jest.spyOn(api, 'getConfig').mockReturnValue({ userkey: 'uk', uri: 'uri' });
+  test('should call provider\'s save method if provider exists when call sendJob', () => {
+    const spy = jest.spyOn(provider, 'save');
+    jest.spyOn(api, 'getConfig').mockReturnValue({
+      userkey: 'uk',
+      uri: 'uri',
+    });
     api
-      .setStorage(storage)
+      .setProvider(provider)
       .sendJob('type', {
         text: 'text',
       })
@@ -83,18 +89,24 @@ describe('[TextRuIntegrationModule] API', () => {
 
   test('should call client\'s getCheckResult method', () => {
     const spy = jest.spyOn(client, 'getCheckResult');
-    jest.spyOn(api, 'getConfig').mockReturnValue({ userkey: 'uk', uri: 'uri' });
+    jest.spyOn(api, 'getConfig').mockReturnValue({
+      userkey: 'uk',
+      uri: 'uri',
+    });
     api.getResult('type', {
       uid: 'uid',
     });
     expect(spy).toHaveBeenCalled();
   });
 
-  test('should call storage\'s save method if storage exists when call getResult', () => {
+  test('should call provider\'s save method if provider exists when call getResult', () => {
     const spy = jest.spyOn(client, 'getCheckResult');
-    jest.spyOn(api, 'getConfig').mockReturnValue({ userkey: 'uk', uri: 'uri' });
+    jest.spyOn(api, 'getConfig').mockReturnValue({
+      userkey: 'uk',
+      uri: 'uri',
+    });
     api
-      .setStorage(storage)
+      .setProvider(provider)
       .getResult('type', {
         uid: 'uid',
       })

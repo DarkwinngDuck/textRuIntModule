@@ -50,7 +50,10 @@ describe('[TextRuIntegrationModule] Client', () => {
       },
     };
     const spy = jest.spyOn(client.http, 'post');
-    client.sendJobToCheck(config, ctx);
+    client.sendJobToCheck({
+      ...config,
+      ...ctx,
+    });
     expect(spy).toHaveBeenCalledWith(fullUri, params);
   });
 
@@ -65,7 +68,7 @@ describe('[TextRuIntegrationModule] Client', () => {
       },
     };
     const spy = jest.spyOn(client.http, 'post');
-    client.getCheckResult(config, uid);
+    client.getCheckResult({ ...config, uid });
     expect(spy).toHaveBeenCalledWith(fullUri, params);
   });
 });
