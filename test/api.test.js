@@ -13,7 +13,7 @@ describe('[TextRuIntegrationModule] API', () => {
     resetConfigurationsCache() {},
   };
   const provider = {
-    save() {},
+    process() {},
   };
 
   beforeEach(() => {
@@ -71,8 +71,8 @@ describe('[TextRuIntegrationModule] API', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test('should call provider\'s save method if provider exists when call sendJob', () => {
-    const spy = jest.spyOn(provider, 'save');
+  test('should call provider\'s process method if provider exists when call sendJob', () => {
+    const spy = jest.spyOn(provider, 'process');
     jest.spyOn(api, 'getConfig').mockReturnValue({
       userkey: 'uk',
       uri: 'uri',
@@ -99,7 +99,7 @@ describe('[TextRuIntegrationModule] API', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test('should call provider\'s save method if provider exists when call getResult', () => {
+  test('should call provider\'s process method if provider exists when call getResult', () => {
     const spy = jest.spyOn(client, 'getCheckResult');
     jest.spyOn(api, 'getConfig').mockReturnValue({
       userkey: 'uk',

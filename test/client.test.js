@@ -34,6 +34,7 @@ describe('[TextRuIntegrationModule] Client', () => {
         method: 'get_packages_info',
         userkey: config.userkey,
       },
+      json: true,
     };
     const spy = jest.spyOn(client.http, 'post');
     client.getAccountInfo(config);
@@ -48,6 +49,7 @@ describe('[TextRuIntegrationModule] Client', () => {
         text: ctx.text,
         userkey: config.userkey,
       },
+      json: true,
     };
     const spy = jest.spyOn(client.http, 'post');
     client.sendJobToCheck({
@@ -66,6 +68,7 @@ describe('[TextRuIntegrationModule] Client', () => {
         userkey: config.userkey,
         jsonvisible: 'detail',
       },
+      json: true,
     };
     const spy = jest.spyOn(client.http, 'post');
     client.getCheckResult({ ...config, uid });
