@@ -1,6 +1,6 @@
 {
   "name": "@seo-booster/text-ru-integration-module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "simple implementation of text.ru integration module",
   "main": "index.js",
   "scripts": {
